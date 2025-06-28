@@ -115,16 +115,16 @@ Match a face image (including distorted versions) to the correct person.
 
 ## Requirements
 
-- Python 3.8+
-- torch
-- torchvision
-- facenet-pytorch
-- numpy
-- pillow
-- matplotlib
-- scikit-learn
-- tqdm
-- seaborn
+    - Python 3.8+
+    - torch
+    - torchvision
+    - facenet-pytorch
+    - numpy
+    - pillow
+    - matplotlib
+    - scikit-learn
+    - tqdm
+    - seaborn
 
 Install requirements with:
 ```bash
