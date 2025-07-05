@@ -33,6 +33,62 @@ Train a model to classify face images as either male or female.
 - Uses a pretrained ResNet18 model with data augmentation and weighted sampling for class imbalance.
 - Evaluates performance with classification report and confusion matrix.
 
+## 📁 Dataset Structure
+
+    Task_A/
+    ├── train/
+    │ ├── Male/
+    │ └── Female/
+    ├── val/
+    │ ├── Male/
+    │ └── Female/
+    └── test/ # (optional)
+    ├── Male/
+    └── Female/
+
+- `train/`: used for training the model (weighted sampler used here)
+- `val/`: used to evaluate performance after each epoch
+- `test/`: optional, used for final evaluation
+
+---
+
+## 🛠️ Key Features
+
+- ✅ Model: Pretrained **ResNet18** with a custom classification head
+- 🎯 Loss: CrossEntropyLoss
+- ⚖️ Sampling: **WeightedRandomSampler** to handle class imbalance
+- 🧪 Validation & Testing: Accuracy, Precision, Recall, F1-score (per class)
+- 🔁 Augmentation: RandomHorizontalFlip, RandomRotation, ColorJitter
+
+---
+
+## 📊 Final Evaluation
+
+    | Metric      | Training Set   | Validation Set |
+    |-------------|----------------|----------------|
+    | Accuracy    | 97%            | 94%            |
+    | Precision   | 97% (weighted) | 94% (weighted) |
+    | Recall      | 97% (weighted) | 94% (weighted) |
+    | F1-score    | 97% (weighted) | 94% (weighted) |
+
+> 🟡 Note: Validation set was imbalanced; metrics like **macro avg** and **weighted avg** were used to report fairness.
+
+---
+
+## 🧾 Model Details
+
+- **Backbone**: `ResNet18 (pretrained)`
+- **Final Layer**:
+        nn.Sequential(
+        nn.Dropout(0.4),
+        nn.Linear(512, 2)
+        )
+
+- **Saved Weights**: `best_gender_model.pth`
+
+---
+
+
 **How to Run:**
 1. Place your data in `Task_A/train/` and `Task_A/val/` with subfolders `male/` and `female/`.
 2. Open a terminal or Jupyter/VS Code and **change your working directory to `Task_A`**:
@@ -40,7 +96,14 @@ Train a model to classify face images as either male or female.
     cd Comys_Hackathon5/Task_A
     ```
 3. Open and run `task-a.ipynb`.
-4. The notebook expects the following structure:
+4. Or, to run as a notebook, change the paths of `train_dir`, `val_dir` and `test_dir` and do this
+    # Train and validate
+        class_names = train_model(train_dir, val_dir)
+
+    # Test on separate test set 
+        test_model(test_dir, class_names)
+
+5. The notebook expects the following structure:
     ```
     Task_A/
       ├── train/
@@ -51,9 +114,9 @@ Train a model to classify face images as either male or female.
       │   └── female/
       └── task-a.ipynb
     ```
-5. The default dataset paths (`./train`, `./val`) will work as long as you run the notebook from inside the `Task_A` folder.
-6. The "train_dir" and "val_dir" contains training data directory path and validation data directory path respectively.
-7. For evaluating on a new dataset, change the path of "test_dir" with your data directory path.
+6. The default dataset paths (`./train`, `./val`) will work as long as you run the notebook from inside the `Task_A` folder.
+7. The "train_dir" and "val_dir" contains training data directory path and validation data directory path respectively.
+8. For evaluating on a new dataset, change the path of "test_dir" with your data directory path.
 
 ---
 
