@@ -1,18 +1,30 @@
 Task A: Gender Classification Results
 
-Best Validation Accuracy: 0.9450
+✅ Best Validation Accuracy: 0.9384
+Model saved as 'best_gender_model.pth'
 
-Classification Report (Validation Set):
-                  precision    recall  f1-score   support
-    
-           female     0.9500    0.9400    0.9450        50
-             male     0.9400    0.9500    0.9450        50
-    
-        accuracy                         0.9450       100
-       macro avg     0.9450    0.9450    0.9450       100
-    weighted avg     0.9450    0.9450    0.9450       100
 
-Confusion Matrix (Validation Set):
-  [[47  3]
-   [ 2 48]]
+📊 Classification Report (Training Set):
+
+              precision    recall  f1-score   support
+
+      female       0.96      0.99      0.97       984
+        male       0.99      0.95      0.97       942
+
+    accuracy                           0.97      1926
+   macro avg       0.97      0.97      0.97      1926
+weighted avg       0.97      0.97      0.97      1926
+
+
+📊 Classification Report (Validation Set):
+
+              precision    recall  f1-score   support
+
+      female       0.82      0.86      0.84        79
+        male       0.97      0.96      0.96       343
+
+    accuracy                           0.94       422
+   macro avg       0.89      0.91      0.90       422
+weighted avg       0.94      0.94      0.94       422
+
 
